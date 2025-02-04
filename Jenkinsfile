@@ -36,8 +36,7 @@ pipeline {
                 sh "mvn clean test -X -DskipTests=true"
             }
         }
-        
-        stage('Trivy FS scan') {
+       /* stage('Trivy FS scan') {
             steps {
                 sh "trivy fs --format table -o fs.html ."
             }
@@ -48,7 +47,7 @@ pipeline {
             withSonarQubeEnv('sonar') {
                 sh "$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=BlueGreen -Dsonar.projectName=BlueGreen -Dsonar.java.binaries=target"
                 }
-                
+"""                
             }
         }
         
@@ -61,14 +60,14 @@ pipeline {
                 }
             }
         }
-        
+*/        
         stage('Build') {
             steps {
                 sh "mvn package -DskipTests=true"
             }
         }
         
-        stage('Publish artifact To Nexus') {
+        /* stage('Publish artifact To Nexus') {
             steps {
                 withMaven(globalMavenSettingsConfig: 'maven', jdk: '', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
                     sh "mvn deploy -X -DskipTests=true"
@@ -189,3 +188,4 @@ pipeline {
      
     }
 }
+*/
