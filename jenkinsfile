@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    
+    tools {
+        maven 'maven3'
+    }
+    
+   
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'github-token', url: 'https://github.com/SowmiyaAngamuthu/Blue-Green-Deployment.git'
+            }
+        }
+        
+        
+        
+        stage('Build') {
+            steps {
+                sh "mvn package -DskipTests=true"
+            }
+        }
+        
+        
+
+}
